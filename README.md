@@ -4,7 +4,7 @@ A lightweight asynchronous thumbnail generator for Go.
 
 ## Usage
 
-`Generate` accepts either relative or absolute file paths.
+`Generate()` accepts a path relative to the project root.
 
 Generate a thumbnail for a single image:
 
