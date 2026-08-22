@@ -1,6 +1,13 @@
 # mwx-go-thumbnail
 
-A lightweight asynchronous thumbnail generator for Go.
+A lightweight concurrent thumbnail generator for Go.
+
+## Features
+
+- Concurrent thumbnail generation using a worker pool
+- Recursive directory scanning
+- Configurable worker count and thumbnail size
+- WebP output
 
 ## Usage
 
@@ -17,3 +24,4 @@ To generate thumbnails for all supported images in a directory recursively, use 
 ```go
 gen.GenerateDir("car")
 ```
+
