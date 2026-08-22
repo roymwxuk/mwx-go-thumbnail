@@ -5,17 +5,17 @@ import (
 	"sync"
 )
 
-// GenerateAll generates thumbnails concurrently using a worker pool.
-func GenerateAll(config *Config) ([]Result, error) {
+// GenerateDir generates thumbnails concurrently using a worker pool.
+func GenerateDir(config *Config) ([]Result, error) {
 	paths, err := Scan(config.RootDir)
 	if err != nil {
 		return nil, err
 	}
 
-	return generateAll(paths, config), nil
+	return generateDir(paths, config), nil
 }
 
-func generateAll(paths []string, config *Config) []Result {
+func generateDir(paths []string, config *Config) []Result {
 	if config.Workers <= 0 {
 		config.Workers = DefaultWorkers
 	}
