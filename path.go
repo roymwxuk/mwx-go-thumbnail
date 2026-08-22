@@ -9,11 +9,16 @@ import (
 const DefaultFolder = ".thumbnail"
 const DefaultExt = ".webp"
 
-func buildThumbnailPath(imgPath string, width int, height int) string {
+func buildThumbnailPath(imgPath string, width int, height int, rootDir string) (string, error) {
 	thumbnailDir := fmt.Sprintf("%s/%dx%d", DefaultFolder, width, height)
-	dir := filepath.Dir(imgPath)
+	relPath, err := filepath.Rel(rootDir, imgPath)
+	if err != nil {
+		return "", err
+	}
+
+	dir := filepath.Dir(relPath)
 	filename := strings.TrimSuffix(filepath.Base(imgPath), filepath.Ext(imgPath)) + DefaultExt
-	return filepath.Join(thumbnailDir, dir, filename)
+	return filepath.Join(rootDir, thumbnailDir, dir, filename), nil
 }
 
 var extMap = map[string]bool{

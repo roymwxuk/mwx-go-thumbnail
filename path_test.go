@@ -17,7 +17,10 @@ func TestBuildThumbnailPath(t *testing.T) {
 	}
 
 	for i, item := range testCases {
-		got := buildThumbnailPath(item.path, item.width, item.height)
+		got, err := buildThumbnailPath(item.path, item.width, item.height, ".")
+		if err != nil {
+			t.Fatalf("Case-%d failed: unexpected error: %v", i, err)
+		}
 		if got != item.expect {
 			t.Fatalf("Case-%d failed: got %q, want %q", i, got, item.expect)
 		}
